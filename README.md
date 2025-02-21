@@ -1,5 +1,3 @@
-Here's a compelling project description in Spanish:
-
 # Galería Dinámica de Imágenes con Next.js  
 
 ## Descripción del Proyecto
