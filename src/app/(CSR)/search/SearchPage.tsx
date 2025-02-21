@@ -6,16 +6,16 @@ import { FormEvent, useState } from "react"
 import styles from "./SearchPage.module.css"
 import Image from "next/image"
 
-
 export default function SearchPage() {
     const [searchResults, setSearchResults] = useState<UnsplashImage[] | null>(null)
     const [searchResultsLoading, setSearchResultsLoading] = useState(false)
     const [searchResultsLoadingIsError, setSearchResultsLoadingIsError] = useState(false)
-    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
 
+    async function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const formData = new FormData(e.target as HTMLFormElement)
         const query = formData.get("query")?.toString().trim()
+
         if (query) {
             try {
                 setSearchResults(null)
@@ -27,56 +27,51 @@ export default function SearchPage() {
             } catch (error) {
                 console.error(error)
                 setSearchResultsLoadingIsError(true)
-
             } finally {
                 setSearchResultsLoading(false)
             }
-
-
         }
-
     }
+
     return (
         <div>
-            <Alert>
-                This page fetches data <strong>client-side</strong>. In order to not leak API credentials,
-                the request is sent to a Next.js <strong>route handler</strong> that runs on the server.
-                This route handler then fetches the data from the Unsplash API and returns it to the client.
+            <Alert variant="secondary">
+                Esta página obtiene datos del <strong>lado del cliente</strong>. Para proteger las credenciales de la API,
+                la solicitud se envía a un <strong>manejador de rutas</strong> de Next.js que se ejecuta en el servidor.
+                Este manejador obtiene los datos de la API de Unsplash y los devuelve al cliente de forma segura.
             </Alert>
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="search-input">
-                    <Form.Label>Search query</Form.Label>
+                    <Form.Label>¿Qué deseas buscar?</Form.Label>
                     <Form.Control
                         name="query"
-                        placeholder="E.g. hotdogs, cars, ..."
+                        placeholder="Ej: naturaleza, tecnología, ..."
                     />
                 </Form.Group>
-                <Button type="submit" className="mb-3" disabled={searchResultsLoading}>Search</Button>
+                <Button type="submit" className="mb-3" disabled={searchResultsLoading}>
+                    {searchResultsLoading ? 'Buscando...' : 'Buscar'}
+                </Button>
             </Form>
             <div className="d-flex flex-column align-items-center">
-                {
-                    searchResultsLoading && <Spinner animation="border" />
-
-                }
-                {searchResultsLoadingIsError && <p>Something went wrong. Please try again.</p>}
-                {searchResults?.length === 0 && <p>Nothing found. Try a different query!</p>}
+                {searchResultsLoading && <Spinner animation="border" />}
+                {searchResultsLoadingIsError && <p>Ha ocurrido un error. Por favor, inténtalo de nuevo.</p>}
+                {searchResults?.length === 0 && <p>No se encontraron resultados. ¡Prueba con otra búsqueda!</p>}
             </div>
 
             {searchResults &&
                 <>
-                    {
-                        searchResults.map(image => (
-                            <Image
-                                src={image.urls.raw}
-                                width={250}
-                                height={250}
-                                alt={image.description || "An image from Unsplash"}
-                                key={image.urls.raw}
-                                className={styles.images}
-                            />
-                        ))
-                    }
-                </>}
+                    {searchResults.map(image => (
+                        <Image
+                            src={image.urls.raw}
+                            width={250}
+                            height={250}
+                            alt={image.description || "Imagen de Unsplash"}
+                            key={image.urls.raw}
+                            className={styles.images}
+                        />
+                    ))}
+                </>
+            }
         </div>
     )
 }
