@@ -1,7 +1,7 @@
 import SearchPage from "./SearchPage"
 
 export const metadata = {
-    title: "Search - Next.js Image Gallery"
+    title: "Buscar"
 }
 
 export default function Page() {

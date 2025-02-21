@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { Alert } from "@/components/bootstrap"
 
 export const metadata: Metadata = {
-    title: "Static Fetching - Next.js",
+    title: "Obtención Estática",
 };
 
 export default async function Page() {
@@ -17,8 +17,8 @@ export default async function Page() {
 
     return (
         <div className="d-flex flex-column align-items-center">
-            <Alert>
-                This page <strong>fetches and caches data at build time</strong>. Even though the Unsplash API always returns a new image, we see the same image after refreshing the page until we compile the project again.
+            <Alert variant='secondary'>
+                Esta página utiliza una <strong>estrategia de obtención y almacenamiento en caché durante el tiempo de compilación</strong>. Como resultado, aunque la API de Unsplash siempre devuelve una imagen diferente, verás la misma imagen al actualizar la página hasta que el proyecto sea recompilado. Esto demuestra el poder del almacenamiento en caché estático de Next.js.
             </Alert>
             <Image
                 src={image.urls.raw}
@@ -27,7 +27,9 @@ export default async function Page() {
                 alt={image.description || "An image from Unsplash"}
                 className="rounded shadow mw-100 h-100"
             />
-            by <Link href={"/users/" + image.user.username}>{image.user.username}</Link>
+            <span className="mt-2">
+                Por <Link href={"/users/" + image.user.username} className="text-decoration-none">{image.user.username}</Link>
+            </span>
         </div>
     )
 }
