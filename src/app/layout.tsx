@@ -1,5 +1,5 @@
 // src/app/layout.tsx
-
+import '@/styles/custom-bootstrap.scss';  // Keep this as the first import
 import '@/styles/custom-bootstrap.scss';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
