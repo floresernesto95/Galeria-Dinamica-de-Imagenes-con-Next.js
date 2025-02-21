@@ -1,0 +1,114 @@
+// src/styles/custom-bootstrap.scss
+
+// Custom theme colors
+$primary: #2563eb;
+$secondary: #475569;
+$success: #16a34a;
+$info: #0891b2;
+$warning: #d97706;
+$danger: #dc2626;
+$light: #f8fafc;
+$dark: #1e293b;
+
+// Custom container max-widths
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px
+);
+
+// Custom spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4.5,
+);
+
+// Custom border radius
+$border-radius: .375rem;
+$border-radius-sm: .25rem;
+$border-radius-lg: .5rem;
+$border-radius-xl: 1rem;
+
+// Font customization
+$font-family-sans-serif: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", sans-serif;
+$font-family-monospace: var(--font-geist-mono), ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Monaco, Consolas, monospace;
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom styles
+
+// Navbar search button styles
+.nav-item .btn-primary {
+  color: white !important;
+  &.active {
+    background-color: darken($primary, 10%) !important;
+    border-color: darken($primary, 10%) !important;
+  }
+  &:hover {
+    background-color: darken($primary, 5%) !important;
+    border-color: darken($primary, 5%) !important;
+  }
+}
+.navbar {
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  .navbar-brand {
+    font-weight: 600;
+  }
+  .nav-link {
+    font-weight: 500;
+  }
+}
+
+.alert {
+  border-width: 2px;
+  border-radius: $border-radius-lg;
+}
+
+.btn {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: $border-radius;
+  transition: all 0.2s ease-in-out;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+.form-control {
+  border-radius: $border-radius;
+  padding: 0.75rem 1rem;
+  border-color: #e2e8f0;
+  
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+}
+
+.card {
+  border-radius: $border-radius-lg;
+  border: none;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.spinner-border {
+  color: $primary;
+}
+
+img {
+  transition: transform 0.2s ease-in-out;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+}

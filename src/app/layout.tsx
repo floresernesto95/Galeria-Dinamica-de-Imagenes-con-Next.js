@@ -1,5 +1,6 @@
 import '@/styles/custom-bootstrap.scss';  // Keep this as the first import
 import 'bootstrap/dist/css/bootstrap.min.css';  // Add this line
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -17,7 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js",
+  title: "Galería Dinámica de Imágenes",
+  description: "Galería dinámica de imágenes moderna construida con Next.js",
 };
 
 export default function RootLayout({
@@ -26,17 +28,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className="h-100">
+      <body className={`${geistSans.variable} ${geistMono.variable} d-flex flex-column h-100`}>
         <SSRProvider>
           <NavBar />
-
-          <main>
-            <Container className='py-4'>
+          <main className="flex-shrink-0">
+            <Container className="py-5">
               {children}
             </Container>
           </main>
-
+          <footer className="footer mt-auto py-3 bg-light">
+            <Container>
+              <div className="text-center text-muted">
+                <p className="mb-0">© 2025 Galería Dinámica de Imágenes. Todos los derechos reservados.</p>
+              </div>
+            </Container>
+          </footer>
         </SSRProvider>
       </body>
     </html>
