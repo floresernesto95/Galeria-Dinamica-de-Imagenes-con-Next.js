@@ -13,7 +13,7 @@ interface PageProps {
     params: InferGetStaticPropsType<typeof generateStaticParams>;
 }
 
-export function generateMetadata({ params: { topic } }: PageProps): Metadata {
+export function generateMetadata(): Metadata {
     return {
         title: "Categorías"
     }
